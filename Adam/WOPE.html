@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Leveraging Open Source Software and Tools for Statistics/Measurement Research</title>
+  <title>Leveraging Open Source Software and Tools for Research</title>
   <meta charset="utf-8">
-  <meta name="description" content="Leveraging Open Source Software and Tools for Statistics/Measurement Research">
+  <meta name="description" content="Leveraging Open Source Software and Tools for Research">
   <meta name="author" content="Adam Van Iwaarden">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,9 +32,9 @@
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1>Leveraging Open Source Software and Tools for Statistics/Measurement Research</h1>
+    <h1>Leveraging Open Source Software and Tools for Research</h1>
     <h2>Write Once, Publish Everywhere</h2>
-    <p>Adam Van Iwaarden<br/>NCME - April 15, 2015</p>
+    <p>Adam Van Iwaarden<br/>NCME April 15, 2015</p>
   </hgroup>
   <article></article>  
 </slide>
@@ -66,11 +66,12 @@
     <h2>Grim Reality ...</h2>
   </hgroup>
   <article data-timings="">
-    <p>Much of the world is still stuck in the dark ages of printed media.  There is still a demand for traditional document formats.</p>
+    <p>Much of the world is still stuck in the dark ages of printed media.  There is still a demand for more traditional document formats.</p>
 
 <ul class = "build incremental">
 <li>PDF</li>
 <li>Word Documents</li>
+<li>Printable electronic media</li>
 </ul>
 
   </article>
@@ -79,7 +80,47 @@
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
-    <h2>The Complete Workflow</h2>
+    <h2>Grim Reality ...</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Might have to make choices about what types of document formats we use based on the demands (skills) of others rather than what is ideal or desired.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>A way to have it all?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Like the Gutenberg Press, what we need is a universal template that allows us to write once, but publish our documents everywhere we want.  Add the ability to do it the formats we want.</p>
+
+<p>My experiments with templating:</p>
+
+<ol class = "build incremental">
+<li><p>Markdown Document: using markdown text files with Jekyll template(s)</p>
+
+<ul>
+<li>Can produce static web pages hosted on Github</li>
+<li>Free to use, but the process is kind of tedious.</li>
+<li>Only one &quot;real&quot; output format (HTML web page).  Printing to PDF painful.</li>
+</ul></li>
+<li><p>SGPreports:  using markdown text files with pandoc templates</p>
+
+<ul>
+<li>Attempt to produce a series of templates that convert a single text file into multiple formats.</li>
+<li>Default <code>pandoc</code> templates allow you to do this to some extent, but lacks consistency and many features of one document type are not available in others.</li>
+</ul></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>The Jekyll Workflow</h2>
   </hgroup>
   <article data-timings="">
     <p>My typical workflow for going from data and script file to a reproducible report that can be hosted on Github:</p>
@@ -90,29 +131,70 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-4" style="background:;">
+<slide class="" id="slide-6" style="background:;">
   <hgroup>
-    <h2>The Simple Workflow,  markdown  -&gt;  static HTML</h2>
+    <h2>The pandoc Workflow</h2>
   </hgroup>
   <article data-timings="">
-    <p>At the heart of creating a Github pages site is simply adding a markdown file to a branch named &quot;gh-pages&quot; on any Github repository.  Github runs Jekyll in the background and this will produce a static site at a URL like http://my_user_name.github.io/My_Project/ or similar. For example, <a href="http://adamvi.github.io/Simple_Site/">http://adamvi.github.io/Simple_Site/</a></p>
+    <p>My typical workflow for going from data and script file to a reproducible report that can be hosted on Github:</p>
 
-<p>Markdown is a language and formatting syntax that can be read by humans and easily converted to HTML.</p>
+<p><code>R</code> / <code>knitr</code> <strong>/ R markdown /</strong> <code>SGPreports</code>  <strong>-&gt;  YAML  -&gt;   markdown  / pandoc -&gt; standalone HTML</strong></p>
 
-<p>For more information about markdown, see the <a href="http://daringfireball.net/projects/markdown/">project website</a> and wikipedia (<a href="http://en.wikipedia.org/wiki/Markdown">http://en.wikipedia.org/wiki/Markdown</a>).</p>
+<blockquote>
+<p><strong>-&gt;  markdown  / pandoc -&gt; DOCX draft</strong></p>
+
+<p><strong>-&gt;  markdown  / pandoc -&gt; (LaTeX) PDF</strong></p>
+
+<p><strong>-&gt;  markdown  / pandoc -&gt; EPUB e-reader</strong></p>
+</blockquote>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-5" style="background:;">
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>The Simple Workflow, markdown  -&gt;  standalone HTML</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>At the heart of creating documents using the <code>SGPreports</code> package is producing a markdown file with properly <em>formatted</em> and populated YAML list.</p>
+
+<ul class = "build incremental">
+<li><p>Markdown is a language and formatting syntax that can be read by humans and easily converted to HTML.</p></li>
+<li><p>For more information about markdown, see the <a href="http://daringfireball.net/projects/markdown/">project website</a> and wikipedia (<a href="http://en.wikipedia.org/wiki/Markdown">http://en.wikipedia.org/wiki/Markdown</a>).</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>YAML Front Matter</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>YAML is a basic markUP language that takes the form of a well structured list of elements.  YAML is used here to:</p>
+
+<ul class = "build incremental">
+<li> Describe the document (title, author(s), abstracts, etc.) </li>
+<li><p>Provide information to <code>R</code> and <code>pandoc</code> about how to convert and format the markdown text file.</p></li>
+<li><p>YAML front matter is located at the very top of this file.  It is composed of several variables sandwiched between triple dashes (<code>---</code>). These variables define how your <code>SGPreport</code> document will appear and will require some customization for each document you produce.</p></li>
+</ul>
+
+<p><a href="http://en.wikipedia.org/wiki/YAML">Read this</a> for a general information and <a href="http://www.yaml.org/start.html">this for help with YAML syntax</a>.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
   <hgroup>
     <h2>Add in Complexity as Desired</h2>
   </hgroup>
   <article data-timings="">
     <p>Complexity can be added to the workflow in multiple areas.</p>
 
-<ol>
+<ol class = "build incremental">
 <li> Using <code>R</code>, R markdown and the <code>knitr</code> package to process <code>R</code> code and include results in an output markdown file that can be converted to HTML.</li>
 <li> Inline and in text HTML.</li>
 <li> Using css, javascript, Bootstrap frameworks and other tools to create more stylized pages and complex (navigable) websites.  These are elements included in the gh-pages directory along with the markdown file.</li>
@@ -122,87 +204,17 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-6" style="background:;">
-  <hgroup>
-    <h2>Markdown_Document Project</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>I wanted to create something that would allow me to easily turn a markdown file into an attractive document with an academic feel to it.  I wanted to be able to include features such as the inclusion of a section numbering, interactive (D3) visualizations, and mathematical equations.  Using css, Liquid templating (for Jekyll), and a few other tools, I&#39;ve created the &quot;Markdown_Document&quot; project.</p>
-
-<p>This is a simple, static site that displays an example of the documents that it can produce, which also serves as a manual for its use.  The example page can be viewed <a href="http://adamvi.github.io/Markdown_Document/">here</a>, and the Github repository can be viewed/forked/downloaded <a href="https://github.com/adamvi/Markdown_Document">here.</a></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-7" style="background:;">
-  <hgroup>
-    <h2>Uses of Markdown_Document</h2>
-  </hgroup>
-  <article data-timings="">
-    <ol>
-<li> Reports for state-level work with Student Growth Percentiles</li>
-<li> White papers and research reports</li>
-<li> Dissertation work</li>
-</ol>
-
-<p><em>Note</em> this can also be used to produce an html file locally using Jekyll directly.  From there one can either distribute the html file directly, use Google Chrome to print a pdf, use pandoc to convert to some other markup language, etc.</p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-8" style="background:;">
-  <hgroup>
-    <h2>Example Demonstration</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>I&#39;ve created an example R markdown file that runs through a demonstration of Baseline referenced SGP production and a brief report of the results.  This file (Baseline_SGP_Report.Rmd) will use the <code>SGP</code> package, as well as some others (<code>plyr</code>, <code>data.table</code>, <code>devtools</code>, etc. that you should have installed).  Most importantly, you will need the <code>knitr</code> package to &quot;knit&quot; the .Rmd file and <code>R</code> code into a regular markdown file.</p>
-
-<pre><code>install.packages(&#39;knitr&#39;, dependencies = TRUE)
-</code></pre>
-
-<p>I will step through the creation of the Github repo, knitting the file, and pushing the resulting files and Markdown_Document directories and components to Github to create the static page.  The necessary files will then be available in that newly created Repo.</p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-9" style="background:;">
-  <hgroup>
-    <h2>Set up the New Repo on Github</h2>
-  </hgroup>
-  <article data-timings="">
-    <ul>
-<li> I&#39;ll name the repo &quot;Baseline_SGP_Report.&quot;  Add README and .gitignore (R) files</li>
-<li> Add a branch named (exactly) &quot;gh-pages&quot;</li>
-<li> Make that branch the default</li>
-<li> Clone the repo to my local machine</li>
-<li> Make sure the gh-pages branch is the current branch</li>
-</ul>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
 <slide class="" id="slide-10" style="background:;">
   <hgroup>
-    <h2>Knit the .Rmd file</h2>
+    <h2>Markdown_Document and SGPreports Projects</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li> Move the Baseline_SGP_Report.Rmd file into the cloned directory file</li>
-<li> In R, switch the working directory to the Baseline_SGP_Report directory and then &quot;knit&quot; the file.</li>
+    <p>I wanted to create something that would allow me to easily turn a markdown file into an attractive document with an academic feel to it.  I wanted to be able to include features such as the inclusion of a section numbering, interactive (D3) visualizations, and mathematical equations.  Using css, Liquid templating (for Jekyll), and a few other tools, I created the &quot;Markdown_Document&quot; project two years ago.</p>
+
+<ul class = "build incremental">
+<li><p>This is a simple, static site that displays an example of the documents that it can produce, which also serves as a manual for its use.  The example page can be viewed <a href="http://adamvi.github.io/Markdown_Document/">here</a>, and the Github repository can be viewed/forked/downloaded <a href="https://github.com/adamvi/Markdown_Document">here.</a></p></li>
+<li><p>See my <a href="http://centerforassessment.github.io/NCME_2015_Presentations/Adam/Markdown_Document.html">presentation from the 2014 NCME Training Session</a> for more details and an example of how to set up a Markdown_Document repository</p></li>
 </ul>
-
-<pre><code>setwd(&#39;Baseline_SGP_Report&#39;)
-
-library(knitr)
-render_jekyll()
-
-knit(&#39;Baseline_SGP_Report.Rmd&#39;, output=&#39;index.md&#39;)
-
-</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -210,14 +222,14 @@ knit(&#39;Baseline_SGP_Report.Rmd&#39;, output=&#39;index.md&#39;)
 
 <slide class="" id="slide-11" style="background:;">
   <hgroup>
-    <h2>Edit some files</h2>
+    <h2>Markdown_Document and SGPreports Projects</h2>
   </hgroup>
   <article data-timings="">
-    <p>When we knit the file, we produced a directory called the &quot;cache,&quot; which saves some interim results from running the R code.  This is useful when drafting the document and changing <code>R</code> code because we don&#39;t have to re-run time consuming calculations, data structuring, etc.  However, we don&#39;t want this cache to be included in our Github repository.  We will &quot;ignore&quot; it using the .gitignore file.</p>
+    <p>SGPreports is a brand new project that has grown out of my work on the Markdown_Document project.  I wanted an easier solution that was completely integrated into <code>R</code>. </p>
 
-<ul>
-<li> Add &quot;cache/<em>&quot; to .gitignore.  Other additions may be desired too, such as &quot;_site/</em>&quot; if you&#39;ve used Jekyll from the command line to review the finished site before pushing it to Github.</li>
-<li> Commit these changes and push to Github.  There will now be a plain website at <a href="http://adamvi.github.io/Baseline_SGP_Report/">http://adamvi.github.io/Baseline_SGP_Report/</a></li>
+<ul class = "build incremental">
+<li>Simplify my workflow - fewer moving pieces</li>
+<li>Make it easier for others to replicate my workflow</li>
 </ul>
 
   </article>
@@ -226,13 +238,14 @@ knit(&#39;Baseline_SGP_Report.Rmd&#39;, output=&#39;index.md&#39;)
 
 <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>Add in the Markdown_Document elements</h2>
+    <h2>Uses of Markdown_Document and SGPreports</h2>
   </hgroup>
   <article data-timings="">
-    <ul>
-<li> Add in the relevant files from the Markdown_Document repository.  Again, you will either want to fork or download the zip file of <a href="https://github.com/adamvi/Markdown_Document">this repo.</a>  Do not add in .md files (index, README, etc.) or any of the other &quot;example&quot; files.</li>
-<li> Commit these changes and push to Github.  There will now be a formatted site at <a href="http://adamvi.github.io/Baseline_SGP_Report/">http://adamvi.github.io/Baseline_SGP_Report/</a></li>
-</ul>
+    <ol class = "build incremental">
+<li> Reports for state-level work with Student Growth Percentiles</li>
+<li> White papers and research reports</li>
+<li> Dissertation work</li>
+</ol>
 
   </article>
   <!-- Presenter Notes -->
@@ -240,14 +253,39 @@ knit(&#39;Baseline_SGP_Report.Rmd&#39;, output=&#39;index.md&#39;)
 
 <slide class="" id="slide-13" style="background:;">
   <hgroup>
-    <h2>Make changes and push those to the master</h2>
+    <h2>SGPreports</h2>
   </hgroup>
   <article data-timings="">
-    <p>Now lets assume we&#39;ve done some additional work, or one of our colleagues has added in their sections.  Let&#39;s add in some text and push that to the gh-pages branch.</p>
+    <p>I&#39;ve created a package for the R statistical environment called <code>SGPreports</code> and this can be installed through Github.  The package is still in its infancy, so it is not available on <a href="http://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a> yet.  </p>
 
-<ul>
-<li> Here we are only adding text, so we <em>could</em> modify the .md file directly and simply update that without having to &quot;re-knit&quot; our .Rmd file.  However, then we would have our files out of sync.  So lets add in text to the .Rmd file and then re-run <code>knit(&#39;Baseline_SGP_Report.Rmd&#39;, output=&#39;index.md&#39;)</code>.</li>
-<li>Once this is done we can push the changes to the gh-pages branch.  Since this is my repo I do not have to do a pull request.  It all happens automatically.  However, if someone were to fork this report and want to make changes or additions to this specific (&quot;official&quot;) repo, they would need to issue a pull request to merge their edits in.</li>
+<pre><code>install.packages(&#39;knitr&#39;, dependencies = TRUE)
+devtools::install_github(&#39;rstudio/rmarkdown&#39;)
+devtools::install_github(&#39;adamvi/SGPreports&#39;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>SGPreports Vignettes</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>As part of the package I&#39;ve created an <em>unconventional</em> vignette for the package.  This contains two markdown files that run through a demonstration of how to create brief reports.  </p>
+
+<ul class = "build incremental">
+<li><p>One is simple.  This file (Vignette_Simple.Rmd) can be used to render a markdown text file into all four available output formats.</p></li>
+<li><p>The second file (Vignette_Complex_HTML.Rmd) contains more complex use cases, such as the ability to include interactive charts and plots.  Given the complexity of many of these features, this example report can only be rendered in HTML.</p></li>
+<li><p>Loading the SGPreports package and running this script will produce a file directory in your current working directory, change your working directory to it, and prints out a message with some instructions.</p></li>
+</ul>
+
+<pre><code>require(&#39;SGPreports&#39;)
+getVignette()
+</code></pre>
+
+<ul class = "build incremental">
+<li> You can find out what directory is your working directory with the command <code>getwd()</code></li>
 </ul>
 
   </article>
@@ -272,68 +310,74 @@ knit(&#39;Baseline_SGP_Report.Rmd&#39;, output=&#39;index.md&#39;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='The Complete Workflow'>
+        data-slide=3 title='Grim Reality ...'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='The Simple Workflow,  markdown  -&gt;  static HTML'>
+        data-slide=4 title='A way to have it all?'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Add in Complexity as Desired'>
+        data-slide=5 title='The Jekyll Workflow'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Markdown_Document Project'>
+        data-slide=6 title='The pandoc Workflow'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Uses of Markdown_Document'>
+        data-slide=7 title='The Simple Workflow, markdown  -&gt;  standalone HTML'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Example Demonstration'>
+        data-slide=8 title='YAML Front Matter'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Set up the New Repo on Github'>
+        data-slide=9 title='Add in Complexity as Desired'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='Knit the .Rmd file'>
+        data-slide=10 title='Markdown_Document and SGPreports Projects'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Edit some files'>
+        data-slide=11 title='Markdown_Document and SGPreports Projects'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Add in the Markdown_Document elements'>
+        data-slide=12 title='Uses of Markdown_Document and SGPreports'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Make changes and push those to the master'>
+        data-slide=13 title='SGPreports'>
          13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='SGPreports Vignettes'>
+         14
       </a>
     </li>
   </ul>

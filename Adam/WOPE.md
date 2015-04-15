@@ -2,7 +2,7 @@
 title       : Leveraging Open Source Software and Tools for Research
 subtitle    : Write Once, Publish Everywhere
 author      : Adam Van Iwaarden
-job         : NCME - April 15, 2015
+job         : NCME April 15, 2015
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
