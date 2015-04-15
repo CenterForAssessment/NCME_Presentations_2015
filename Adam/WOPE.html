@@ -34,7 +34,7 @@
   <hgroup class="auto-fadein">
     <h1>Leveraging Open Source Software and Tools for Research</h1>
     <h2>Write Once, Publish Everywhere</h2>
-    <p>Adam Van Iwaarden<br/>NCME April 15, 2015</p>
+    <p>Adam Van Iwaarden<br/>NCME - April 15, 2015</p>
   </hgroup>
   <article></article>  
 </slide>
@@ -195,9 +195,10 @@
     <p>Complexity can be added to the workflow in multiple areas.</p>
 
 <ol class = "build incremental">
-<li> Using <code>R</code>, R markdown and the <code>knitr</code> package to process <code>R</code> code and include results in an output markdown file that can be converted to HTML.</li>
+<li> Using <code>R</code> (Rstudio) and the <code>knitr</code>, <code>rmarkdown</code> and <code>SGPreports</code> packages to process <code>R</code> code and output results in an markdown file that can be converted to HTML.</li>
 <li> Inline and in text HTML.</li>
-<li> Using css, javascript, Bootstrap frameworks and other tools to create more stylized pages and complex (navigable) websites.  These are elements included in the gh-pages directory along with the markdown file.</li>
+<li> Using CSS (Cascading Style Sheets), JavaScript, Bootstrap frameworks and other tools to create more stylized pages and complex (navigable) websites.  In the Markdown_Documents work these are elements would be included in the gh-pages directory along with the markdown file.  In SGPreports these files are housed in the R package and usually combined into the documents themselves (standalone HTML and EPUB e-reader files).</li>
+<li> LaTeX mathematics formulae - inline and display styles.</li>
 </ol>
 
   </article>
@@ -209,7 +210,7 @@
     <h2>Markdown_Document and SGPreports Projects</h2>
   </hgroup>
   <article data-timings="">
-    <p>I wanted to create something that would allow me to easily turn a markdown file into an attractive document with an academic feel to it.  I wanted to be able to include features such as the inclusion of a section numbering, interactive (D3) visualizations, and mathematical equations.  Using css, Liquid templating (for Jekyll), and a few other tools, I created the &quot;Markdown_Document&quot; project two years ago.</p>
+    <p>I wanted to create something that would allow me to easily turn a markdown file into an attractive document with an academic feel to it.  I wanted to be able to include features such as section numbering, interactive (D3) visualizations, and mathematical equations.  Using CSS, Liquid templating (for Jekyll), and a few other tools, I created the &quot;Markdown_Document&quot; project two years ago on Github.</p>
 
 <ul class = "build incremental">
 <li><p>This is a simple, static site that displays an example of the documents that it can produce, which also serves as a manual for its use.  The example page can be viewed <a href="http://adamvi.github.io/Markdown_Document/">here</a>, and the Github repository can be viewed/forked/downloaded <a href="https://github.com/adamvi/Markdown_Document">here.</a></p></li>
@@ -258,6 +259,8 @@
   <article data-timings="">
     <p>I&#39;ve created a package for the R statistical environment called <code>SGPreports</code> and this can be installed through Github.  The package is still in its infancy, so it is not available on <a href="http://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a> yet.  </p>
 
+<p>Here are some additional packages you will need:</p>
+
 <pre><code>install.packages(&#39;knitr&#39;, dependencies = TRUE)
 devtools::install_github(&#39;rstudio/rmarkdown&#39;)
 devtools::install_github(&#39;adamvi/SGPreports&#39;)
@@ -272,12 +275,14 @@ devtools::install_github(&#39;adamvi/SGPreports&#39;)
     <h2>SGPreports Vignettes</h2>
   </hgroup>
   <article data-timings="">
-    <p>As part of the package I&#39;ve created an <em>unconventional</em> vignette for the package.  This contains two markdown files that run through a demonstration of how to create brief reports.  </p>
+    <p>As part of the package I&#39;ve created an <em>unconventional</em> vignette for the package.  This contains two markdown files that run through a demonstration of how to create brief reports, along with some additional CSS, JavaScript and bibliographic (.bib) files, images that will be embedded in the report.  </p>
+
+<p>The two .Rmd files show different features of the package:</p>
 
 <ul class = "build incremental">
-<li><p>One is simple.  This file (Vignette_Simple.Rmd) can be used to render a markdown text file into all four available output formats.</p></li>
-<li><p>The second file (Vignette_Complex_HTML.Rmd) contains more complex use cases, such as the ability to include interactive charts and plots.  Given the complexity of many of these features, this example report can only be rendered in HTML.</p></li>
-<li><p>Loading the SGPreports package and running this script will produce a file directory in your current working directory, change your working directory to it, and prints out a message with some instructions.</p></li>
+<li><p>The first file (Vignette_Simple.Rmd) is relatively simple, but it can be used to render all four available output formats.</p></li>
+<li><p>The second file (Vignette_Complex_HTML.Rmd) contains more complex use cases, such as the ability to include interactive charts and plots.  Given the nature of many of these features, this example report can only be rendered in HTML.</p></li>
+<li><p>Loading the SGPreports package and running the <code>getVignette</code> script will produce a file directory in your current working directory, change your working directory to it, and prints out a message with some instructions.</p></li>
 </ul>
 
 <pre><code>require(&#39;SGPreports&#39;)
