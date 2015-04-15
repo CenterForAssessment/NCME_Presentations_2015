@@ -22,7 +22,7 @@ CFA:
   email: dbetebenner@nciea.org
   mapsite: 'http://a.tiles.mapbox.com/v3/adamvi.map-skzt93ls.html#14/43.19873153204993/-70.878'
 
- The production_url is only used when full-domain names are needed
+# The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
 # Most places will/should use BASE_PATH to make the urls
 #
