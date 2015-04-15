@@ -47,14 +47,15 @@ Like the Gutenberg Press, what we need is a universal template that allows us to
 
 My experiments with templating:
 
->1. Markdown Document: using markdown text files with Jekyll template(s)
+>1. [Markdown Document](http://adamvi.github.io/Markdown_Document/): using markdown text files with Jekyll template(s)
 >  - Can produce static web pages hosted on Github
 >  - Free to use, but the process is kind of tedious.
 >  - Only one "real" output format (HTML web page).  Printing to PDF painful.
 
->2. SGPreports:  using markdown text files with pandoc templates
+>2. [SGPreports](https://github.com/adamvi/SGPreports): using markdown text files with [`pandoc`](http://pandoc.org/) templates
 >  - Attempt to produce a series of templates that convert a single text file into multiple formats.
 >  - Default `pandoc` templates allow you to do this to some extent, but lacks consistency and many features of one document type are not available in others.
+>  - Rstudio now comes with `pandoc` already installed, so if you have a new version of Rstudio, you also have `pandoc`!
 
 
 ---
@@ -65,19 +66,23 @@ My typical workflow for going from data and script file to a reproducible report
 
 `R` / `knitr` **/ R markdown   ->   markdown  ->  YAML / Jekyll / Liquid -> static HTML**
 
+The Jekyll step is happening "behind the scenes" on Github - no need to install anything on your computer.  However, this makes debugging and development a tedious process (lots of commits!).  You can also install Jekyll locally, but this can be a frustrating endeavor (and not officially supported in Windows).
+
 ---
 
 ## The pandoc Workflow
 
 My typical workflow for going from data and script file to a reproducible report that can be hosted on Github:
 
-`R` / `knitr` **/ R markdown /** `SGPreports`  **->  YAML  ->   markdown  / pandoc -> standalone HTML**
+`R` / `knitr` **/ R markdown /** `SGPreports`  **->  YAML  ->  markdown / pandoc -> standalone HTML**
 
->**->  markdown  / pandoc -> DOCX draft**
+>**---->  YAML -> markdown  / pandoc -> DOCX draft**
 
->**->  markdown  / pandoc -> (LaTeX) PDF**
+>**----> YAML -> markdown  / pandoc -> (LaTeX) PDF**
 
->**->  markdown  / pandoc -> EPUB e-reader**
+>**----> markdown  / pandoc -> EPUB e-reader**
+
+The pandoc step is now largely happening in the background in `R` thanks to the `render()` family of functions in `rmarkdown` and descendents like `Grmd` and `SGPreports`.  Pandoc can also be used directly from the command line.  Most `render()` functions also display the system calls to pandoc so you can see what exactly is going on behind the scenes.
 
 ---
 
@@ -146,7 +151,7 @@ SGPreports is a brand new project that has grown out of my work on the Markdown_
 
 I've created a package for the R statistical environment called `SGPreports` and this can be installed through Github.  The package is still in its infancy, so it is not available on [CRAN](http://cran.r-project.org/web/packages/available_packages_by_name.html) yet.  
 
-Here are some additional packages you will need:
+Here are some additional packages you will need if you don't have them already:
 
 ```
 install.packages('knitr', dependencies = TRUE)

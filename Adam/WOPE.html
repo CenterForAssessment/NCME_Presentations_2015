@@ -99,18 +99,19 @@
 <p>My experiments with templating:</p>
 
 <ol class = "build incremental">
-<li><p>Markdown Document: using markdown text files with Jekyll template(s)</p>
+<li><p><a href="http://adamvi.github.io/Markdown_Document/">Markdown Document</a>: using markdown text files with Jekyll template(s)</p>
 
 <ul>
 <li>Can produce static web pages hosted on Github</li>
 <li>Free to use, but the process is kind of tedious.</li>
 <li>Only one &quot;real&quot; output format (HTML web page).  Printing to PDF painful.</li>
 </ul></li>
-<li><p>SGPreports:  using markdown text files with pandoc templates</p>
+<li><p><a href="https://github.com/adamvi/SGPreports">SGPreports</a>: using markdown text files with <a href="http://pandoc.org/"><code>pandoc</code></a> templates</p>
 
 <ul>
 <li>Attempt to produce a series of templates that convert a single text file into multiple formats.</li>
 <li>Default <code>pandoc</code> templates allow you to do this to some extent, but lacks consistency and many features of one document type are not available in others.</li>
+<li>Rstudio now comes with <code>pandoc</code> already installed, so if you have a new version of Rstudio, you also have <code>pandoc</code>!</li>
 </ul></li>
 </ol>
 
@@ -127,6 +128,8 @@
 
 <p><code>R</code> / <code>knitr</code> <strong>/ R markdown   -&gt;   markdown  -&gt;  YAML / Jekyll / Liquid -&gt; static HTML</strong></p>
 
+<p>The Jekyll step is happening &quot;behind the scenes&quot; on Github - no need to install anything on your computer.  However, this makes debugging and development a tedious process (lots of commits!).  You can also install Jekyll locally, but this can be a frustrating endeavor (and not officially supported in Windows).</p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -138,15 +141,17 @@
   <article data-timings="">
     <p>My typical workflow for going from data and script file to a reproducible report that can be hosted on Github:</p>
 
-<p><code>R</code> / <code>knitr</code> <strong>/ R markdown /</strong> <code>SGPreports</code>  <strong>-&gt;  YAML  -&gt;   markdown  / pandoc -&gt; standalone HTML</strong></p>
+<p><code>R</code> / <code>knitr</code> <strong>/ R markdown /</strong> <code>SGPreports</code>  <strong>-&gt;  YAML  -&gt;  markdown / pandoc -&gt; standalone HTML</strong></p>
 
 <blockquote>
-<p><strong>-&gt;  markdown  / pandoc -&gt; DOCX draft</strong></p>
+<p><strong>----&gt;  YAML -&gt; markdown  / pandoc -&gt; DOCX draft</strong></p>
 
-<p><strong>-&gt;  markdown  / pandoc -&gt; (LaTeX) PDF</strong></p>
+<p><strong>----&gt; YAML -&gt; markdown  / pandoc -&gt; (LaTeX) PDF</strong></p>
 
-<p><strong>-&gt;  markdown  / pandoc -&gt; EPUB e-reader</strong></p>
+<p><strong>----&gt; markdown  / pandoc -&gt; EPUB e-reader</strong></p>
 </blockquote>
+
+<p>The pandoc step is now largely happening in the background in <code>R</code> thanks to the <code>render()</code> family of functions in <code>rmarkdown</code> and descendents like <code>Grmd</code> and <code>SGPreports</code>.  Pandoc can also be used directly from the command line.  Most <code>render()</code> functions also display the system calls to pandoc so you can see what exactly is going on behind the scenes.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -259,7 +264,7 @@
   <article data-timings="">
     <p>I&#39;ve created a package for the R statistical environment called <code>SGPreports</code> and this can be installed through Github.  The package is still in its infancy, so it is not available on <a href="http://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a> yet.  </p>
 
-<p>Here are some additional packages you will need:</p>
+<p>Here are some additional packages you will need if you don&#39;t have them already:</p>
 
 <pre><code>install.packages(&#39;knitr&#39;, dependencies = TRUE)
 devtools::install_github(&#39;rstudio/rmarkdown&#39;)
