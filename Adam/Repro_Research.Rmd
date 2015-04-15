@@ -25,44 +25,68 @@ I will step through the creation of the Github repo, knitting the file, and push
 
 ##  Set up the New Repo on Github
 
-*  I'll name the repo "Baseline_SGP_Report."  Add README and .gitignore (R) files
-*  Add a branch named (exactly) "gh-pages"
-*  Make that branch the default
-*  Clone the repo to my local machine
-*  Make sure the gh-pages branch is the current branch
+>-  I'll name the repo "Baseline_SGP_Report."  Add README and .gitignore (R) files
+>-  Add a branch named (exactly) "gh-pages"
+>-  Make that branch the default
+>-  Clone the repo to my local machine
+>-  Make sure the gh-pages branch is the current branch
 
 ---
 
 ##  Knit the .Rmd file
 
-*  Move the Baseline_SGP_Report.Rmd file into the cloned directory file
-*  In R, switch the working directory to the Baseline_SGP_Report directory and then "knit" the file.
+>-  Move the Baseline_SGP_Report.Rmd file into the cloned directory file
+>-  In R, switch the working directory to the Baseline_SGP_Report directory and then "knit" the file.
 
 ```
 setwd('Baseline_SGP_Report')
+require(SGPreports)
 
-library(knitr)
-render_jekyll()
+# changes the 'environment' the functions use to render the file, so that we can use the data.table package
+use.data.table()
 
-knit('Baseline_SGP_Report.Rmd', output='index.md')
+		renderMultiDocument(
+				rmd_input = 'Baseline_SGP_Report.Rmd',
+				output_format=c('HTML', 'EPUB', 'PDF', 'DOCX'),
+				pandoc_args = '--webtex'
+		)
 
 ```
 
 ---
 
-##  Edit some files
+##  Look at the files and directories produced
 
-When we knit the file, we produced a directory called the "cache," which saves some interim results from running the R code.  This is useful when drafting the document and changing `R` code because we don't have to re-run time consuming calculations, data structuring, etc.  However, we don't want this cache to be included in our Github repository.  We will "ignore" it using the .gitignore file.
+### `cache`
+
+When we render the file, we produced a directory called the "Baseline_SGP_Report_cache," which saves some interim results from running the R code.  This is useful when drafting the document and changing `R` code because we don't have to re-run time consuming calculations, data structuring, etc.  However, we don't want this cache to be included in our Github repository.  We will "ignore" it using the .gitignore file.
 
 *  Add "cache/*" to .gitignore.  Other additions may be desired too, such as "_site/*" if you've used Jekyll from the command line to review the finished site before pushing it to Github.
 *  Commit these changes and push to Github.  There will now be a plain website at http://adamvi.github.io/Baseline_SGP_Report/
 
 ---
 
-## Add in the Markdown_Document elements
+##  Look at the files and directories produced
 
-*  Add in the relevant files from the Markdown_Document repository.  Again, you will either want to fork or download the zip file of [this repo.](https://github.com/adamvi/Markdown_Document)  Do not add in .md files (index, README, etc.) or any of the other "example" files.
-*  Commit these changes and push to Github.  There will now be a formatted site at http://adamvi.github.io/Baseline_SGP_Report/
+### `img`
+
+If we have either produced figures or plots to include in the document in R, or just have image files we want to include in the document, they need to be placed in the img/ directory.  In this case we created the Goodness of Fit plots and then moved those into the img/ directory using R code.
+
+---
+
+##  Look at the files and directories produced
+
+### `HTML`
+
+When we render the file, the first output format we produced was a standalone HTML file.  Standalone means that it has the CSS, JS and .png images embedded in code within the document.  That potentially makes it  very large, but makes it easily transportable (you can simply give the file to someone and they can open it in a browser without needing a complex file system backing it).
+
+---
+
+##  Look at the files and directories produced
+
+### `EPUB`, `PDF` and `DOCX`
+
+If we render the file in other possible formats, we will also produce file directories with these format files (and potentially other interim documents, such as .md and .tex, if we supply the argument `cleanup_aux_files=TRUE`.  
 
 ---
 

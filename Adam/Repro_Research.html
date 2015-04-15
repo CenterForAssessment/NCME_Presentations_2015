@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leveraging Open Source Software and Tools for Statistics and Measurement Research</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Leveraging Open Source Software and Tools for Statistics and Measurement Research">
+  <meta name="author" content="Adam Van Iwaarden">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Leveraging Open Source Software and Tools for Statistics and Measurement Research</h1>
+    <h2>Reproducible Research Example</h2>
+    <p>Adam Van Iwaarden<br/>NCME - April 15, 2015</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Example Demonstration</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>I&#39;ve created an example R markdown file that runs through a demonstration of Baseline referenced SGP production and a brief report of the results.  This file (Baseline_SGP_Report.Rmd) will use the <code>SGP</code> package, as well as some others (<code>plyr</code>, <code>data.table</code>, <code>devtools</code>, etc. that you should have installed).  Most importantly, you will need the <code>knitr</code> package to &quot;knit&quot; the .Rmd file and <code>R</code> code into a regular markdown file.</p>
+
+<pre><code>install.packages(&#39;knitr&#39;, dependencies = TRUE)
+</code></pre>
+
+<p>I will step through the creation of the Github repo, knitting the file, and pushing the resulting files and Markdown_Document directories and components to Github to create the static page.  The necessary files will then be available in that newly created Repo.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Set up the New Repo on Github</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li> I&#39;ll name the repo &quot;Baseline_SGP_Report.&quot;  Add README and .gitignore (R) files</li>
+<li> Add a branch named (exactly) &quot;gh-pages&quot;</li>
+<li> Make that branch the default</li>
+<li> Clone the repo to my local machine</li>
+<li> Make sure the gh-pages branch is the current branch</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Knit the .Rmd file</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li> Move the Baseline_SGP_Report.Rmd file into the cloned directory file</li>
+<li> In R, switch the working directory to the Baseline_SGP_Report directory and then &quot;knit&quot; the file.</li>
+</ul>
+
+<pre><code>setwd(&#39;Baseline_SGP_Report&#39;)
+require(SGPreports)
+
+# changes the &#39;environment&#39; the functions use to render the file, so that we can use the data.table package
+use.data.table()
+
+        renderMultiDocument(
+                rmd_input = &#39;Baseline_SGP_Report.Rmd&#39;,
+                output_format=c(&#39;HTML&#39;, &#39;EPUB&#39;, &#39;PDF&#39;, &#39;DOCX&#39;),
+                pandoc_args = &#39;--webtex&#39;
+        )
+
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Look at the files and directories produced</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><code>cache</code></h3>
+
+<p>When we render the file, we produced a directory called the &quot;Baseline_SGP_Report_cache,&quot; which saves some interim results from running the R code.  This is useful when drafting the document and changing <code>R</code> code because we don&#39;t have to re-run time consuming calculations, data structuring, etc.  However, we don&#39;t want this cache to be included in our Github repository.  We will &quot;ignore&quot; it using the .gitignore file.</p>
+
+<ul>
+<li> Add &quot;cache/<em>&quot; to .gitignore.  Other additions may be desired too, such as &quot;_site/</em>&quot; if you&#39;ve used Jekyll from the command line to review the finished site before pushing it to Github.</li>
+<li> Commit these changes and push to Github.  There will now be a plain website at <a href="http://adamvi.github.io/Baseline_SGP_Report/">http://adamvi.github.io/Baseline_SGP_Report/</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Look at the files and directories produced</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><code>img</code></h3>
+
+<p>If we have either produced figures or plots to include in the document in R, or just have image files we want to include in the document, they need to be placed in the img/ directory.  In this case we created the Goodness of Fit plots and then moved those into the img/ directory using R code.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Look at the files and directories produced</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><code>HTML</code></h3>
+
+<p>When we render the file, the first output format we produced was a standalone HTML file.  Standalone means that it has the CSS, JS and .png images embedded in code within the document.  That potentially makes it  very large, but makes it easily transportable (you can simply give the file to someone and they can open it in a browser without needing a complex file system backing it).</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Look at the files and directories produced</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><code>EPUB</code>, <code>PDF</code> and <code>DOCX</code></h3>
+
+<p>If we render the file in other possible formats, we will also produce file directories with these format files (and potentially other interim documents, such as .md and .tex, if we supply the argument <code>cleanup_aux_files=TRUE</code>.  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Make changes and push those to the master</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Now lets assume we&#39;ve done some additional work, or one of our colleagues has added in their sections.  Let&#39;s add in some text and push that to the gh-pages branch.</p>
+
+<ul>
+<li> Here we are only adding text, so we <em>could</em> modify the .md file directly and simply update that without having to &quot;re-knit&quot; our .Rmd file.  However, then we would have our files out of sync.  So lets add in text to the .Rmd file and then re-run <code>knit(&#39;Baseline_SGP_Report.Rmd&#39;, output=&#39;index.md&#39;)</code>.</li>
+<li>Once this is done we can push the changes to the gh-pages branch.  Since this is my repo I do not have to do a pull request.  It all happens automatically.  However, if someone were to fork this report and want to make changes or additions to this specific (&quot;official&quot;) repo, they would need to issue a pull request to merge their edits in.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Example Demonstration'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Set up the New Repo on Github'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Knit the .Rmd file'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Look at the files and directories produced'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Look at the files and directories produced'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Look at the files and directories produced'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Look at the files and directories produced'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Make changes and push those to the master'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title=''>
+         9
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

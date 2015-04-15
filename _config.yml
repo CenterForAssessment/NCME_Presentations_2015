@@ -124,8 +124,8 @@ navbar:
             label: Write Once Publish Everywhere
             link: Adam/WOPE.html
           - 
-            label: Reproducible Research
-            link: 404.html
+            label: Reproducible Research Example
+            link: Adam/Repro_Research.html
           - 
             label: Markdown Document for Jekyll
             link: Adam/Markdown_Document.html
